@@ -97,12 +97,9 @@
 		EFD3B41D227A3B4A00F98FD6 /* Fleetio Sample */ = {
 			isa = PBXGroup;
 			children = (
-				EFD3B41E227A3B4A00F98FD6 /* AppDelegate.swift */,
-				EFD3B420227A3B4A00F98FD6 /* ViewController.swift */,
-				EFD3B422227A3B4A00F98FD6 /* Main.storyboard */,
-				EFD3B425227A3B4C00F98FD6 /* Assets.xcassets */,
-				EFD3B427227A3B4C00F98FD6 /* LaunchScreen.storyboard */,
-				EFD3B42A227A3B4C00F98FD6 /* Info.plist */,
+				EFD3B44C227A3BC700F98FD6 /* Fleetio */,
+				EFD3B44D227A3BD100F98FD6 /* View Controllers */,
+				EFD3B44E227A3BDF00F98FD6 /* Resources */,
 			);
 			path = "Fleetio Sample";
 			sourceTree = "<group>";
@@ -123,6 +120,33 @@
 				EFD3B440227A3B4C00F98FD6 /* Info.plist */,
 			);
 			path = "Fleetio SampleUITests";
+			sourceTree = "<group>";
+		};
+		EFD3B44C227A3BC700F98FD6 /* Fleetio */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B42A227A3B4C00F98FD6 /* Info.plist */,
+				EFD3B41E227A3B4A00F98FD6 /* AppDelegate.swift */,
+			);
+			path = Fleetio;
+			sourceTree = "<group>";
+		};
+		EFD3B44D227A3BD100F98FD6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B420227A3B4A00F98FD6 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		EFD3B44E227A3BDF00F98FD6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B427227A3B4C00F98FD6 /* LaunchScreen.storyboard */,
+				EFD3B422227A3B4A00F98FD6 /* Main.storyboard */,
+				EFD3B425227A3B4C00F98FD6 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
