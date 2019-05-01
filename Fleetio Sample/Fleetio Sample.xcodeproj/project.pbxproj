@@ -14,6 +14,7 @@
 		EFD3B429227A3B4C00F98FD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFD3B427227A3B4C00F98FD6 /* LaunchScreen.storyboard */; };
 		EFD3B434227A3B4C00F98FD6 /* Fleetio_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B433227A3B4C00F98FD6 /* Fleetio_SampleTests.swift */; };
 		EFD3B43F227A3B4C00F98FD6 /* Fleetio_SampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B43E227A3B4C00F98FD6 /* Fleetio_SampleUITests.swift */; };
+		EFD3B452227A3C6A00F98FD6 /* FIONetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B451227A3C6A00F98FD6 /* FIONetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		EFD3B43A227A3B4C00F98FD6 /* Fleetio SampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fleetio SampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD3B43E227A3B4C00F98FD6 /* Fleetio_SampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleetio_SampleUITests.swift; sourceTree = "<group>"; };
 		EFD3B440227A3B4C00F98FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFD3B451227A3C6A00F98FD6 /* FIONetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIONetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				EFD3B44C227A3BC700F98FD6 /* Fleetio */,
+				EFD3B44F227A3C1C00F98FD6 /* Classes */,
 				EFD3B44D227A3BD100F98FD6 /* View Controllers */,
 				EFD3B44E227A3BDF00F98FD6 /* Resources */,
 			);
@@ -147,6 +150,22 @@
 				EFD3B425227A3B4C00F98FD6 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EFD3B44F227A3C1C00F98FD6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B450227A3C2700F98FD6 /* Business Objects */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		EFD3B450227A3C2700F98FD6 /* Business Objects */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B451227A3C6A00F98FD6 /* FIONetworkManager.swift */,
+			);
+			path = "Business Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD3B421227A3B4A00F98FD6 /* ViewController.swift in Sources */,
+				EFD3B452227A3C6A00F98FD6 /* FIONetworkManager.swift in Sources */,
 				EFD3B41F227A3B4A00F98FD6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,7 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C4PWXY3Q27;
-				INFOPLIST_FILE = "Fleetio Sample/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Fleetio Sample/Fleetio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -476,7 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C4PWXY3Q27;
-				INFOPLIST_FILE = "Fleetio Sample/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Fleetio Sample/Fleetio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
