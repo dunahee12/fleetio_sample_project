@@ -13,14 +13,28 @@
         <!--Item 2-->
         <scene sceneID="RfA-D0-I3g">
             <objects>
-                <viewController id="wOW-NV-Lsk" sceneMemberID="viewController">
+                <viewController id="wOW-NV-Lsk" customClass="FuelEntryMapViewController" customModule="Fleetio_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h8K-dA-z5j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DqI-xf-ANw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xwn-Rg-BkZ" firstAttribute="bottom" secondItem="DqI-xf-ANw" secondAttribute="bottom" id="KOu-Pl-cRA"/>
+                            <constraint firstItem="xwn-Rg-BkZ" firstAttribute="trailing" secondItem="DqI-xf-ANw" secondAttribute="trailing" id="gIO-dR-qiR"/>
+                            <constraint firstItem="DqI-xf-ANw" firstAttribute="leading" secondItem="xwn-Rg-BkZ" secondAttribute="leading" id="k9j-dv-VZ1"/>
+                            <constraint firstItem="DqI-xf-ANw" firstAttribute="top" secondItem="xwn-Rg-BkZ" secondAttribute="top" id="uF1-9w-p4N"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xwn-Rg-BkZ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="9Ex-ly-oaV"/>
+                    <connections>
+                        <outlet property="mapView" destination="DqI-xf-ANw" id="qQ0-w2-gdK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJY-Oq-4py" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
