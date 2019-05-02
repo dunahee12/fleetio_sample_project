@@ -15,6 +15,7 @@
 		EFD3B434227A3B4C00F98FD6 /* Fleetio_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B433227A3B4C00F98FD6 /* Fleetio_SampleTests.swift */; };
 		EFD3B43F227A3B4C00F98FD6 /* Fleetio_SampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B43E227A3B4C00F98FD6 /* Fleetio_SampleUITests.swift */; };
 		EFD3B452227A3C6A00F98FD6 /* FIONetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B451227A3C6A00F98FD6 /* FIONetworkManager.swift */; };
+		EFD3B455227A4F0B00F98FD6 /* FIOFuelEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B454227A4F0B00F98FD6 /* FIOFuelEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		EFD3B43E227A3B4C00F98FD6 /* Fleetio_SampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleetio_SampleUITests.swift; sourceTree = "<group>"; };
 		EFD3B440227A3B4C00F98FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFD3B451227A3C6A00F98FD6 /* FIONetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIONetworkManager.swift; sourceTree = "<group>"; };
+		EFD3B454227A4F0B00F98FD6 /* FIOFuelEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOFuelEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		EFD3B44F227A3C1C00F98FD6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EFD3B453227A4EF900F98FD6 /* Models */,
 				EFD3B450227A3C2700F98FD6 /* Business Objects */,
 			);
 			path = Classes;
@@ -166,6 +169,14 @@
 				EFD3B451227A3C6A00F98FD6 /* FIONetworkManager.swift */,
 			);
 			path = "Business Objects";
+			sourceTree = "<group>";
+		};
+		EFD3B453227A4EF900F98FD6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B454227A4F0B00F98FD6 /* FIOFuelEntry.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD3B421227A3B4A00F98FD6 /* ViewController.swift in Sources */,
+				EFD3B455227A4F0B00F98FD6 /* FIOFuelEntry.swift in Sources */,
 				EFD3B452227A3C6A00F98FD6 /* FIONetworkManager.swift in Sources */,
 				EFD3B41F227A3B4A00F98FD6 /* AppDelegate.swift in Sources */,
 			);
