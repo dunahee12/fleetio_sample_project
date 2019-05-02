@@ -9,6 +9,7 @@
 import Foundation
 
 struct FIOFuelEntry {
+    
     var date: Date
     var vehicleName: String
     var cost: String
@@ -18,6 +19,8 @@ struct FIOFuelEntry {
     var pricePerGallon: Double
     var vendor: String
     var referenceNumber: String
+    var latitude: Double
+    var longitude: Double
     
     init(withDictionary dictionary: Dictionary<String, Any>) {
         date = (dictionary["date"] as? Date) ?? Date()
@@ -29,5 +32,14 @@ struct FIOFuelEntry {
         pricePerGallon = (dictionary["price_per_volume_unit"] as? Double) ?? 0.00
         vendor = (dictionary["vendor_name"] as? String) ?? "Unavailable"
         referenceNumber = (dictionary["reference"] as? String) ?? "Unavailable"
+        
+        if let geolocationDict = dictionary["geolocation"] as? Dictionary<String, Any> {
+            latitude = (geolocationDict["latitude"] as? Double) ?? 0.00
+            longitude = (geolocationDict["longitude"] as? Double) ?? 0.00
+        } else {
+            latitude = 0.00
+            longitude = 0.00
+        }
     }
+    
 }
