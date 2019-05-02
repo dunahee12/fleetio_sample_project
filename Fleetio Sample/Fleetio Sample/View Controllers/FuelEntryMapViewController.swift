@@ -9,9 +9,14 @@
 import UIKit
 import MapKit
 
+protocol FuelEntryMapViewControllerDelegate: class {
+    func fuelEntryMapViewController(viewController: FuelEntryMapViewController, receivedMappingErrorWithCount count: Int)
+}
+
 class FuelEntryMapViewController: UIViewController {
     
     // Public Vars
+    public weak var delegate: FuelEntryMapViewControllerDelegate?
     public var fuelEntries: [FIOFuelEntry]! {
         didSet {
             populateMapView()
@@ -47,8 +52,14 @@ class FuelEntryMapViewController: UIViewController {
         mapView.removeAnnotations(annotations)
         annotations.removeAll()
         
+        var errorCount = 0
+        
         // Populate annotations
         for entry in fuelEntries {
+            if entry.latitude == 0 && entry.longitude == 0 {
+                errorCount += 1
+            }
+            
             let annotation = MKPointAnnotation()
             annotation.title = entry.vehicleName
             annotation.subtitle = entry.referenceNumber
@@ -57,6 +68,17 @@ class FuelEntryMapViewController: UIViewController {
             
             annotations.append(annotation)
         }
+        
+        showMappingError(withCount: errorCount)
+    }
+    
+    /**
+     Presents user with an error message about entries not containing coordinates
+     
+     - Parameter count: Number of entries without coordinates
+     */
+    private func showMappingError(withCount count: Int) {
+        delegate?.fuelEntryMapViewController(viewController: self, receivedMappingErrorWithCount: count)
     }
 
 }

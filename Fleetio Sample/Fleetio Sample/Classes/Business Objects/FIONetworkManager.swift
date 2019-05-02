@@ -26,7 +26,7 @@ class FIONetworkManager: NSObject {
     
     // MARK: Public Functions
     
-    public func getFuelEntries(withSuccess success: @escaping (NSArray) -> Void, failure: @escaping (Error) -> Void) {
+    public func getFuelEntries(withSuccess success: @escaping (Array<Dictionary<String, Any>>) -> Void, failure: @escaping (Error) -> Void) {
         // Create request from URL
         let urlString = "https://secure.fleetio.com/api/v1/fuel_entries"
         guard let request = createAuthenticatedRequest(withUrlString: urlString) else {
@@ -44,7 +44,7 @@ class FIONetworkManager: NSObject {
             // Parse json, if data is returned
             if let jsonData = data {
                 do {
-                    let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as! NSArray
+                    let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as! Array<Dictionary<String, Any>>
                     success(jsonArray)
                 } catch(let error) {
                     failure(error)
