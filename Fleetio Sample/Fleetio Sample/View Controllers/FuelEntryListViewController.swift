@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol FuelEntryListViewControllerDelegate: class {
+    func fuelEntryListViewController(viewController: FuelEntryListViewController, didSelectFuelEntry fuelEntry: FIOFuelEntry)
+}
+
 class FuelEntryListViewController: UIViewController {
     
     // Public Vars
+    public weak var delegate: FuelEntryListViewControllerDelegate?
     public var fuelEntries: [FIOFuelEntry]! {
         didSet {
             tableView.reloadData()
@@ -48,6 +53,10 @@ extension FuelEntryListViewController: UITableViewDelegate, UITableViewDataSourc
         return fuelEntries.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get Fuel Entry
         let fuelEntry = fuelEntries[indexPath.row]
@@ -58,5 +67,28 @@ extension FuelEntryListViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 65
+    }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = "Fuel Entries"
+        cell.textLabel?.textColor = UIColor.fleetioGreen()
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 22, weight: .light)
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.contentView.backgroundColor = UIColor.groupTableViewBackground
+        
+        return cell
+    }
+    
+    // MARK: Delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let fuelEntry = fuelEntries[indexPath.row]
+        delegate?.fuelEntryListViewController(viewController: self, didSelectFuelEntry: fuelEntry)
+    }
 }

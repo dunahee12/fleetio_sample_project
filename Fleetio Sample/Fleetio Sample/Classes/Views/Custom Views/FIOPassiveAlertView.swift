@@ -17,7 +17,7 @@ enum PassiveAlertType {
     var colorValue: UIColor {
         get {
             switch self {
-            case .positive: return UIColor(withHexSting: "#24C26D")
+            case .positive: return UIColor.fleetioGreen()
             case .neutral: return UIColor(withHexSting: "#DF9D43")
             case .negative: return UIColor(withHexSting: "#E27A7A")
             }

@@ -19,7 +19,6 @@ class FuelEntryDetailViewController: UIViewController {
     
     // Private Vars
     private let headerCellIdentifier = "DetailHeaderCell"
-    private var propertyArray: [Mirror.Child?]?
     
     
     // MARK: Lifecycle Functions
@@ -27,7 +26,6 @@ class FuelEntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        propertyArray = fuelEntry.allProperties()
         tableView.register(UINib(nibName: FIOFuelDetailCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: FIOFuelDetailCell.cellIdentifier)
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 20
@@ -64,7 +62,7 @@ extension FuelEntryDetailViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FIOFuelDetailCell.cellIdentifier, for: indexPath) as! FIOFuelDetailCell
         
@@ -84,7 +82,7 @@ extension FuelEntryDetailViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 55
+        return 65
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -97,6 +95,10 @@ extension FuelEntryDetailViewController: UITableViewDataSource, UITableViewDeleg
         cell.contentView.backgroundColor = UIColor.fleetioGreen()
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
     
 }

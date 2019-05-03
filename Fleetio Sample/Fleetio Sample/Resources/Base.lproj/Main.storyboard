@@ -10,7 +10,68 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Fuel Entry Detail View Controller-->
+        <scene sceneID="s3Q-t0-NRI">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="tLe-Dw-wdr" customClass="FuelEntryDetailViewController" customModule="Fleetio_Sample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UuM-NK-gu5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7Q-La-Fy2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ah6-JN-Gn8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="alx-cJ-avq">
+                                <rect key="frame" x="10" y="58" width="355" height="609"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tLe-Dw-wdr" id="swc-k5-bJF"/>
+                                    <outlet property="delegate" destination="tLe-Dw-wdr" id="rpC-IA-D7d"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3c-Rh-PcX">
+                                <rect key="frame" x="330" y="20" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Aia-NQ-jbB"/>
+                                    <constraint firstAttribute="width" constant="30" id="gEI-Z0-sgA"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="tappedWithBtnClose:" destination="tLe-Dw-wdr" eventType="touchUpInside" id="XXn-rM-H2H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="alx-cJ-avq" firstAttribute="top" secondItem="g3c-Rh-PcX" secondAttribute="bottom" constant="8" id="0cI-Cg-dS3"/>
+                            <constraint firstItem="g3c-Rh-PcX" firstAttribute="top" secondItem="RXD-pM-rJB" secondAttribute="top" id="FmF-fx-qU8"/>
+                            <constraint firstItem="alx-cJ-avq" firstAttribute="leading" secondItem="RXD-pM-rJB" secondAttribute="leading" constant="10" id="N2A-8W-bCU"/>
+                            <constraint firstItem="RXD-pM-rJB" firstAttribute="bottom" secondItem="Q7Q-La-Fy2" secondAttribute="bottom" id="UFo-sf-FRc"/>
+                            <constraint firstItem="RXD-pM-rJB" firstAttribute="bottom" secondItem="alx-cJ-avq" secondAttribute="bottom" id="ZeM-Lx-f15"/>
+                            <constraint firstItem="RXD-pM-rJB" firstAttribute="trailing" secondItem="alx-cJ-avq" secondAttribute="trailing" constant="10" id="cWb-Xf-4Ux"/>
+                            <constraint firstItem="Q7Q-La-Fy2" firstAttribute="top" secondItem="UuM-NK-gu5" secondAttribute="top" id="ehd-U7-pZC"/>
+                            <constraint firstItem="Q7Q-La-Fy2" firstAttribute="leading" secondItem="RXD-pM-rJB" secondAttribute="leading" id="qV2-CH-cCo"/>
+                            <constraint firstItem="RXD-pM-rJB" firstAttribute="trailing" secondItem="Q7Q-La-Fy2" secondAttribute="trailing" id="rz6-8S-Yng"/>
+                            <constraint firstItem="RXD-pM-rJB" firstAttribute="trailing" secondItem="g3c-Rh-PcX" secondAttribute="trailing" constant="15" id="zR3-zk-8EV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RXD-pM-rJB"/>
+                    </view>
+                    <connections>
+                        <outlet property="blurView" destination="Q7Q-La-Fy2" id="mhp-Qz-aU2"/>
+                        <outlet property="tableView" destination="alx-cJ-avq" id="voW-yt-zRW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j1y-2X-Tq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1343.2" y="709.29535232383819"/>
+        </scene>
+        <!--Map-->
         <scene sceneID="RfA-D0-I3g">
             <objects>
                 <viewController id="wOW-NV-Lsk" customClass="FuelEntryMapViewController" customModule="Fleetio_Sample" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +92,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xwn-Rg-BkZ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="9Ex-ly-oaV"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mapIcon" selectedImage="mapIcon" id="9Ex-ly-oaV"/>
                     <connections>
                         <outlet property="mapView" destination="DqI-xf-ANw" id="qQ0-w2-gdK"/>
                     </connections>
@@ -40,7 +101,7 @@
             </objects>
             <point key="canvasLocation" x="-447" y="308"/>
         </scene>
-        <!--Item 1-->
+        <!--List-->
         <scene sceneID="ARH-7L-nnc">
             <objects>
                 <viewController id="gx8-dQ-5yT" customClass="FuelEntryListViewController" customModule="Fleetio_Sample" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,7 +118,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IeL-3V-Fhh" firstAttribute="trailing" secondItem="lg6-Zx-5cH" secondAttribute="trailing" id="U35-cQ-iZt"/>
                             <constraint firstItem="IeL-3V-Fhh" firstAttribute="bottom" secondItem="lg6-Zx-5cH" secondAttribute="bottom" id="UI8-T5-WkL"/>
@@ -66,7 +127,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IeL-3V-Fhh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="9jw-uN-rfJ"/>
+                    <tabBarItem key="tabBarItem" title="List" image="listIcon" selectedImage="listIcon" id="9jw-uN-rfJ"/>
                     <connections>
                         <outlet property="tableView" destination="lg6-Zx-5cH" id="xIA-KH-H3F"/>
                     </connections>
@@ -82,11 +143,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dUs-B3-6hw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="selectedImageTintColor" red="0.14117647059999999" green="0.76078431369999999" blue="0.42745098040000001" alpha="0.99113178690000003" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="gx8-dQ-5yT" kind="relationship" relationship="viewControllers" id="46A-Md-vUB"/>
                         <segue destination="wOW-NV-Lsk" kind="relationship" relationship="viewControllers" id="t5F-iI-Dbi"/>
+                        <segue destination="tLe-Dw-wdr" kind="presentation" identifier="DetailSegue" id="RkC-E2-ksb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQ7-7B-7xZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -94,4 +157,9 @@
             <point key="canvasLocation" x="-1342" y="-19"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close" width="14" height="14"/>
+        <image name="listIcon" width="44" height="44"/>
+        <image name="mapIcon" width="2.8758170604705811" height="2.8758170604705811"/>
+    </resources>
 </document>

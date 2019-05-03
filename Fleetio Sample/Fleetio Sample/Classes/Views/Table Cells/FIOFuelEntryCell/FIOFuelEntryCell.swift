@@ -15,12 +15,16 @@ class FIOFuelEntryCell: UITableViewCell {
     
     // IBOutlets
     @IBOutlet weak var lblVehicleName: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblCost: UILabel!
     
     
     // MARK: Public Functions
     
     public func bind(withFuelEntry fuelEntry: FIOFuelEntry) {
         lblVehicleName.text = fuelEntry.vehicleName
+        lblDate.text = FIOGlobal.shared.dateToStringFormatter.string(from: fuelEntry.date)
+        lblCost.text = "$\(fuelEntry.cost)"
     }
     
 }

@@ -11,16 +11,19 @@ import UIKit
 class ViewController: UITabBarController {
     
     // Private Vars
+    private let detailSegueIdentifier = "DetailSegue"
     private var fuelEntries: [FIOFuelEntry]!
     private var listController: FuelEntryListViewController!
     private var mapController: FuelEntryMapViewController!
+    private var selectedEntry: FIOFuelEntry?
 
+    
+    // MARK: Lifecycle Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set up references to children
-        setupChildViewControllers()
-        
+        setupChildViewControllers() // Set up references to children
         fuelEntries = [FIOFuelEntry]()
         
         FIONetworkManager.shared.getFuelEntries(withSuccess: { (jsonArray) in
@@ -40,6 +43,22 @@ class ViewController: UITabBarController {
             print("[Fleet Sample - ViewController]: \(error)")
         }
     }
+    
+    
+    // MARK: Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case detailSegueIdentifier:
+            if let selectedEntry = selectedEntry {
+                let detailVC = segue.destination as! FuelEntryDetailViewController
+                detailVC.fuelEntry = selectedEntry
+            }
+            
+        default:
+            break
+        }
+    }
 
     
     // MARK: Private Functions
@@ -51,6 +70,7 @@ class ViewController: UITabBarController {
         
         // Get reference to ListViewController
         if let listController = viewControllers[0] as? FuelEntryListViewController {
+            listController.delegate = self
             self.listController = listController
         }
         
@@ -75,6 +95,18 @@ class ViewController: UITabBarController {
         let passiveAlertView = FIOPassiveAlertView(withMessage: message, alertType: alertType, forView: view)
         passiveAlertView.presentAlert()
     }
+}
+
+
+// MARK: FuelEntryListViewController Delegate
+
+extension ViewController: FuelEntryListViewControllerDelegate {
+    
+    func fuelEntryListViewController(viewController: FuelEntryListViewController, didSelectFuelEntry fuelEntry: FIOFuelEntry) {
+        selectedEntry = fuelEntry
+        performSegue(withIdentifier: detailSegueIdentifier, sender: self)
+    }
+    
 }
 
 
