@@ -12,8 +12,8 @@ struct FIOFuelEntry {
     
     var date: Date
     var vehicleName: String
-    var cost: String
     var costPerMile: Double
+    var usageInMiles: Double
     var gallons: Double
     var fuelTypeName: String
     var pricePerGallon: Double
@@ -22,10 +22,22 @@ struct FIOFuelEntry {
     var latitude: Double
     var longitude: Double
     
+    // I'm not 100% sure on this, but this is what I am using to calculate
+    // the 'cost' field, as described in the project instructions
+    var cost: Double {
+        return costPerMile * usageInMiles
+    }
+    
     init(withDictionary dictionary: Dictionary<String, Any>) {
-        date = (dictionary["date"] as? Date) ?? Date()
+        if let dateString = dictionary["date"] as? String,
+            let dateValue = FIOGlobal.shared.stringToDateFormatter.date(from: dateString) {
+            date = dateValue
+        } else {
+            date = Date()
+        }
+        
         vehicleName = (dictionary["vehicle_name"] as? String) ?? "Unavailable"
-        cost = (dictionary["cost_per_mi"] as? String) ?? "Unavailable"
+        usageInMiles = (dictionary["usage_in_mi"] as? Double) ?? 0.00
         costPerMile = (dictionary["cost_per_mi"] as? Double) ?? 0.00
         gallons = (dictionary["us_gallons"] as? Double) ?? 0.00
         fuelTypeName = (dictionary["fuel_type_name"] as? String) ?? "Unavailable"
