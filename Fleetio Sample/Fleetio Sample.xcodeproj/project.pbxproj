@@ -22,6 +22,9 @@
 		EFD3B460227B3DB500F98FD6 /* FuelEntryMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B45F227B3DB500F98FD6 /* FuelEntryMapViewController.swift */; };
 		EFD3B463227B601100F98FD6 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B462227B601100F98FD6 /* UIColorExtension.swift */; };
 		EFD3B468227B621A00F98FD6 /* FIOPassiveAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B467227B621A00F98FD6 /* FIOPassiveAlertView.swift */; };
+		EFD3B46C227B81AD00F98FD6 /* FuelEntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B46B227B81AD00F98FD6 /* FuelEntryDetailViewController.swift */; };
+		EFD3B46E227B835F00F98FD6 /* FIOFuelDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B46D227B835F00F98FD6 /* FIOFuelDetailCell.swift */; };
+		EFD3B471227B837600F98FD6 /* FIOFuelDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		EFD3B45F227B3DB500F98FD6 /* FuelEntryMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEntryMapViewController.swift; sourceTree = "<group>"; };
 		EFD3B462227B601100F98FD6 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		EFD3B467227B621A00F98FD6 /* FIOPassiveAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOPassiveAlertView.swift; sourceTree = "<group>"; };
+		EFD3B46B227B81AD00F98FD6 /* FuelEntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEntryDetailViewController.swift; sourceTree = "<group>"; };
+		EFD3B46D227B835F00F98FD6 /* FIOFuelDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOFuelDetailCell.swift; sourceTree = "<group>"; };
+		EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FIOFuelDetailCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,7 @@
 				EFD3B420227A3B4A00F98FD6 /* ViewController.swift */,
 				EFD3B456227B362F00F98FD6 /* FuelEntryListViewController.swift */,
 				EFD3B45F227B3DB500F98FD6 /* FuelEntryMapViewController.swift */,
+				EFD3B46B227B81AD00F98FD6 /* FuelEntryDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -207,6 +214,7 @@
 		EFD3B459227B39E500F98FD6 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EFD3B46F227B836300F98FD6 /* FIOFuelDetailCell */,
 				EFD3B45E227B3A1900F98FD6 /* FIOFuelEntryCell */,
 			);
 			path = "Table Cells";
@@ -235,6 +243,15 @@
 				EFD3B467227B621A00F98FD6 /* FIOPassiveAlertView.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		EFD3B46F227B836300F98FD6 /* FIOFuelDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B46D227B835F00F98FD6 /* FIOFuelDetailCell.swift */,
+				EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */,
+			);
+			path = FIOFuelDetailCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +361,7 @@
 				EFD3B429227A3B4C00F98FD6 /* LaunchScreen.storyboard in Resources */,
 				EFD3B45D227B3A1400F98FD6 /* FIOFuelEntryCell.xib in Resources */,
 				EFD3B426227A3B4C00F98FD6 /* Assets.xcassets in Resources */,
+				EFD3B471227B837600F98FD6 /* FIOFuelDetailCell.xib in Resources */,
 				EFD3B424227A3B4A00F98FD6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,9 +391,11 @@
 				EFD3B421227A3B4A00F98FD6 /* ViewController.swift in Sources */,
 				EFD3B460227B3DB500F98FD6 /* FuelEntryMapViewController.swift in Sources */,
 				EFD3B455227A4F0B00F98FD6 /* FIOFuelEntry.swift in Sources */,
+				EFD3B46C227B81AD00F98FD6 /* FuelEntryDetailViewController.swift in Sources */,
 				EFD3B463227B601100F98FD6 /* UIColorExtension.swift in Sources */,
 				EFD3B457227B362F00F98FD6 /* FuelEntryListViewController.swift in Sources */,
 				EFD3B45C227B3A1400F98FD6 /* FIOFuelEntryCell.swift in Sources */,
+				EFD3B46E227B835F00F98FD6 /* FIOFuelDetailCell.swift in Sources */,
 				EFD3B452227A3C6A00F98FD6 /* FIONetworkManager.swift in Sources */,
 				EFD3B41F227A3B4A00F98FD6 /* AppDelegate.swift in Sources */,
 			);

@@ -33,4 +33,8 @@ extension UIColor {
         )
     }
     
+    public class func fleetioGreen() -> UIColor {
+        return UIColor(withHexSting: "#24C26D")
+    }
+    
 }
