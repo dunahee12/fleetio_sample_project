@@ -25,6 +25,7 @@
 		EFD3B46C227B81AD00F98FD6 /* FuelEntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B46B227B81AD00F98FD6 /* FuelEntryDetailViewController.swift */; };
 		EFD3B46E227B835F00F98FD6 /* FIOFuelDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B46D227B835F00F98FD6 /* FIOFuelDetailCell.swift */; };
 		EFD3B471227B837600F98FD6 /* FIOFuelDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */; };
+		EFD3B4D7227CB75200F98FD6 /* FIOGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B4D6227CB75200F98FD6 /* FIOGlobal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		EFD3B46B227B81AD00F98FD6 /* FuelEntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEntryDetailViewController.swift; sourceTree = "<group>"; };
 		EFD3B46D227B835F00F98FD6 /* FIOFuelDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOFuelDetailCell.swift; sourceTree = "<group>"; };
 		EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FIOFuelDetailCell.xib; sourceTree = "<group>"; };
+		EFD3B4D6227CB75200F98FD6 /* FIOGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOGlobal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 		EFD3B450227A3C2700F98FD6 /* Business Objects */ = {
 			isa = PBXGroup;
 			children = (
+				EFD3B4D6227CB75200F98FD6 /* FIOGlobal.swift */,
 				EFD3B451227A3C6A00F98FD6 /* FIONetworkManager.swift */,
 			);
 			path = "Business Objects";
@@ -388,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD3B468227B621A00F98FD6 /* FIOPassiveAlertView.swift in Sources */,
+				EFD3B4D7227CB75200F98FD6 /* FIOGlobal.swift in Sources */,
 				EFD3B421227A3B4A00F98FD6 /* ViewController.swift in Sources */,
 				EFD3B460227B3DB500F98FD6 /* FuelEntryMapViewController.swift in Sources */,
 				EFD3B455227A4F0B00F98FD6 /* FIOFuelEntry.swift in Sources */,
