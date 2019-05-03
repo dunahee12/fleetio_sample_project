@@ -26,6 +26,8 @@
 		EFD3B46E227B835F00F98FD6 /* FIOFuelDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B46D227B835F00F98FD6 /* FIOFuelDetailCell.swift */; };
 		EFD3B471227B837600F98FD6 /* FIOFuelDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */; };
 		EFD3B4D7227CB75200F98FD6 /* FIOGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B4D6227CB75200F98FD6 /* FIOGlobal.swift */; };
+		EFD3B4D9227CF78700F98FD6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B4D8227CF78700F98FD6 /* UIViewExtension.swift */; };
+		EFD3B4DC227CF7B300F98FD6 /* FIOPassiveAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD3B4DB227CF7B300F98FD6 /* FIOPassiveAlertView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		EFD3B46D227B835F00F98FD6 /* FIOFuelDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOFuelDetailCell.swift; sourceTree = "<group>"; };
 		EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FIOFuelDetailCell.xib; sourceTree = "<group>"; };
 		EFD3B4D6227CB75200F98FD6 /* FIOGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOGlobal.swift; sourceTree = "<group>"; };
+		EFD3B4D8227CF78700F98FD6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		EFD3B4DB227CF7B300F98FD6 /* FIOPassiveAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FIOPassiveAlertView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				EFD3B462227B601100F98FD6 /* UIColorExtension.swift */,
+				EFD3B4D8227CF78700F98FD6 /* UIViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -243,7 +248,7 @@
 		EFD3B464227B61D000F98FD6 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				EFD3B467227B621A00F98FD6 /* FIOPassiveAlertView.swift */,
+				EFD3B4DA227CF79E00F98FD6 /* FIOPassiveAlertView */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -255,6 +260,15 @@
 				EFD3B470227B837600F98FD6 /* FIOFuelDetailCell.xib */,
 			);
 			path = FIOFuelDetailCell;
+			sourceTree = "<group>";
+		};
+		EFD3B4DA227CF79E00F98FD6 /* FIOPassiveAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				EFD3B467227B621A00F98FD6 /* FIOPassiveAlertView.swift */,
+				EFD3B4DB227CF7B300F98FD6 /* FIOPassiveAlertView.xib */,
+			);
+			path = FIOPassiveAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFD3B4DC227CF7B300F98FD6 /* FIOPassiveAlertView.xib in Resources */,
 				EFD3B429227A3B4C00F98FD6 /* LaunchScreen.storyboard in Resources */,
 				EFD3B45D227B3A1400F98FD6 /* FIOFuelEntryCell.xib in Resources */,
 				EFD3B426227A3B4C00F98FD6 /* Assets.xcassets in Resources */,
@@ -399,6 +414,7 @@
 				EFD3B463227B601100F98FD6 /* UIColorExtension.swift in Sources */,
 				EFD3B457227B362F00F98FD6 /* FuelEntryListViewController.swift in Sources */,
 				EFD3B45C227B3A1400F98FD6 /* FIOFuelEntryCell.swift in Sources */,
+				EFD3B4D9227CF78700F98FD6 /* UIViewExtension.swift in Sources */,
 				EFD3B46E227B835F00F98FD6 /* FIOFuelDetailCell.swift in Sources */,
 				EFD3B452227A3C6A00F98FD6 /* FIONetworkManager.swift in Sources */,
 				EFD3B41F227A3B4A00F98FD6 /* AppDelegate.swift in Sources */,

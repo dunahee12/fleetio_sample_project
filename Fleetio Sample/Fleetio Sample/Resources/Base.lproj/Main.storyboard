@@ -109,6 +109,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Fuel Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDe-u4-GPw">
+                                <rect key="frame" x="129.5" y="323.5" width="116" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lg6-Zx-5cH">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -120,15 +126,18 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="KDe-u4-GPw" firstAttribute="centerY" secondItem="FVV-Rf-UsN" secondAttribute="centerY" id="5Db-Rw-nvi"/>
                             <constraint firstItem="IeL-3V-Fhh" firstAttribute="trailing" secondItem="lg6-Zx-5cH" secondAttribute="trailing" id="U35-cQ-iZt"/>
                             <constraint firstItem="IeL-3V-Fhh" firstAttribute="bottom" secondItem="lg6-Zx-5cH" secondAttribute="bottom" id="UI8-T5-WkL"/>
                             <constraint firstItem="lg6-Zx-5cH" firstAttribute="leading" secondItem="IeL-3V-Fhh" secondAttribute="leading" id="Yur-Rx-dOG"/>
                             <constraint firstItem="lg6-Zx-5cH" firstAttribute="top" secondItem="IeL-3V-Fhh" secondAttribute="top" id="cBi-3v-fwR"/>
+                            <constraint firstItem="KDe-u4-GPw" firstAttribute="centerX" secondItem="FVV-Rf-UsN" secondAttribute="centerX" id="nAD-Xy-ygg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IeL-3V-Fhh"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="listIcon" selectedImage="listIcon" id="9jw-uN-rfJ"/>
                     <connections>
+                        <outlet property="lblEmpty" destination="KDe-u4-GPw" id="CO3-m0-1SF"/>
                         <outlet property="tableView" destination="lg6-Zx-5cH" id="xIA-KH-H3F"/>
                     </connections>
                 </viewController>

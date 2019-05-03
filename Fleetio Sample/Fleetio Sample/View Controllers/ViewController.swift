@@ -26,6 +26,11 @@ class ViewController: UITabBarController {
         setupChildViewControllers() // Set up references to children
         fuelEntries = [FIOFuelEntry]()
         
+        // Use passive alert as a 'loading indicator'
+        let loadingAlert: FIOPassiveAlertView = UIView.fromNib()
+        loadingAlert.showsLoader = true
+        loadingAlert.presentAlert(withMessage: "Getting latest Fuel Entries", alertType: .positive, forView: view)
+        
         FIONetworkManager.shared.getFuelEntries(withSuccess: { (jsonArray) in
             for entry in jsonArray {
                 let fuelEntry = FIOFuelEntry(withDictionary: entry)
@@ -34,6 +39,7 @@ class ViewController: UITabBarController {
             
             DispatchQueue.main.async {
                 self.updateFuelEntries()
+                loadingAlert.hideAlert()
             }
         }) { (error) in
             let alert = UIAlertController(title: "Uh oh!", message: "An error occurred while trying to get fuel entries. Please try again!", preferredStyle: .alert)
@@ -92,8 +98,9 @@ class ViewController: UITabBarController {
     }
     
     private func presentPassiveAlert(withMessage message: String, alertType: PassiveAlertType = .positive) {
-        let passiveAlertView = FIOPassiveAlertView(withMessage: message, alertType: alertType, forView: view)
-        passiveAlertView.presentAlert()
+        let passiveAlertView: FIOPassiveAlertView = UIView.fromNib()
+        passiveAlertView.autoDismissEnabled = true
+        passiveAlertView.presentAlert(withMessage: message, alertType: alertType, forView: view)
     }
 }
 
