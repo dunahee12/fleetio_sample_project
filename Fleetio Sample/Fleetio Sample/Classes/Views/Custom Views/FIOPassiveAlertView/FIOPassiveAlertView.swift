@@ -41,18 +41,6 @@ class FIOPassiveAlertView: UIView {
     
     // MARK: Public Functions
     
-    public func presentAlert() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-            self.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: self.frame.size)
-        }) { (complete) in
-            if self.autoDismissEnabled {
-                Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { (timer) in
-                    self.hideAlert()
-                })
-            }
-        }
-    }
-    
     public func presentAlert(withMessage message: String, alertType: PassiveAlertType, forView view: UIView) {
         self.frame = CGRect(x: 0, y: -alertHeight, width: view.frame.width, height: alertHeight)
         view.addSubview(self)
