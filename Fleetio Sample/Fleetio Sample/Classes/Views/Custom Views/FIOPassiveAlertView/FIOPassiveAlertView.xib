@@ -17,19 +17,19 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLe-rM-S4h">
-                    <rect key="frame" x="20" y="347" width="45" height="21.5"/>
+                    <rect key="frame" x="20" y="343" width="45" height="21.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="PLE-gJ-qYU">
-                    <rect key="frame" x="82" y="347.5" width="20" height="20"/>
+                    <rect key="frame" x="82" y="343.5" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.14117647059999999" green="0.76078431369999999" blue="0.42745098040000001" alpha="0.99113178690000003" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="TLe-rM-S4h" firstAttribute="leading" secondItem="u9W-bA-fAg" secondAttribute="leading" constant="20" id="Sag-UV-dcN"/>
-                <constraint firstItem="TLe-rM-S4h" firstAttribute="centerY" secondItem="p2R-wm-QGH" secondAttribute="centerY" constant="24" id="Uo6-2p-NyR"/>
+                <constraint firstItem="TLe-rM-S4h" firstAttribute="centerY" secondItem="p2R-wm-QGH" secondAttribute="centerY" constant="20" id="Uo6-2p-NyR"/>
                 <constraint firstItem="PLE-gJ-qYU" firstAttribute="leading" secondItem="TLe-rM-S4h" secondAttribute="trailing" constant="17" id="oAe-IW-SO2"/>
                 <constraint firstItem="PLE-gJ-qYU" firstAttribute="centerY" secondItem="TLe-rM-S4h" secondAttribute="centerY" id="q8K-b7-5zz"/>
             </constraints>

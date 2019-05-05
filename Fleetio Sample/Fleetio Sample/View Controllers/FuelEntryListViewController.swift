@@ -10,6 +10,7 @@ import UIKit
 
 protocol FuelEntryListViewControllerDelegate: class {
     func fuelEntryListViewController(viewController: FuelEntryListViewController, didSelectFuelEntry fuelEntry: FIOFuelEntry)
+    func fuelEntryListViewControllerRequestedMoreEntries(viewController: FuelEntryListViewController)
 }
 
 class FuelEntryListViewController: UIViewController {
@@ -22,20 +23,57 @@ class FuelEntryListViewController: UIViewController {
         }
     }
     
+    public var allEntriesLoaded = false {
+        didSet {
+            if allEntriesLoaded && btnLoad != nil {
+                btnLoad.isEnabled = !allEntriesLoaded
+                btnLoad.sizeToFit()
+            }
+        }
+    }
+    
     // IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblEmpty: UILabel!
 
+    // Private Vars
+    var btnLoad: UIButton!
+    
     
     // MARK: Lifecycle Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Add footer to table for loading more entries
+        let tableFooter = UIView()
+        tableFooter.backgroundColor = .white
+        tableFooter.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60)
+        
+        btnLoad = UIButton()
+        btnLoad.setTitle("Load more entries...", for: .normal)
+        btnLoad.setTitle("No more entries to load", for: .disabled)
+        btnLoad.setTitleColor(UIColor.fleetioGreen(), for: .normal)
+        btnLoad.setTitleColor(.lightGray, for: .disabled)
+        btnLoad.addTarget(self, action: #selector(tapped(btnFooter:)), for: .touchUpInside)
+        btnLoad.sizeToFit()
+        btnLoad.center = tableFooter.center
+        tableFooter.addSubview(btnLoad)
+        tableView.tableFooterView = tableFooter
         updateTable()
 
         // Register tableViewCell
         tableView.register(UINib(nibName: FIOFuelEntryCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: FIOFuelEntryCell.cellIdentifier)
+    }
+    
+    
+    // MARK: Actions
+    
+    @IBAction
+    func tapped(btnFooter: UIButton) {
+        if !allEntriesLoaded {
+            delegate?.fuelEntryListViewControllerRequestedMoreEntries(viewController: self)
+        }
     }
     
     

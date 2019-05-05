@@ -19,6 +19,7 @@ class ViewController: UITabBarController {
     private var mapController: FuelEntryMapViewController!
     private var selectedEntry: FIOFuelEntry?
     private var fuelEntries = [FIOFuelEntry]()
+    private var fuelEntryPaginationCounter = 0
 
     
     // MARK: Lifecycle Functions
@@ -28,7 +29,7 @@ class ViewController: UITabBarController {
         
         setupChildViewControllers() // Set up references to children
         loadCoreDataEntries()
-        refreshFuelEntries()
+        fetchFuelEntries(withRefresh: true)
     }
     
     
@@ -79,21 +80,37 @@ class ViewController: UITabBarController {
         passiveAlertView.presentAlert(withMessage: message, alertType: alertType, forView: view)
     }
     
-    private func refreshFuelEntries() {
+    private func fetchFuelEntries(withRefresh: Bool) {
         // Use passive alert as a 'loading indicator'
         let loadingAlert: FIOPassiveAlertView = UIView.fromNib()
         loadingAlert.showsLoader = true
         loadingAlert.presentAlert(withMessage: "Getting latest Fuel Entries", alertType: .positive, forView: view)
         
+        // Sets page number for pagination
+        fuelEntryPaginationCounter = withRefresh ? 1 : (fuelEntryPaginationCounter + 1)
+        
         // Start API request
-        FIONetworkManager.shared.getFuelEntries(withSuccess: { (jsonArray) in
+        FIONetworkManager.shared.getFuelEntries(forPage: fuelEntryPaginationCounter, withSuccess: { (jsonArray, doneLoading) in
+            // Update coreData and refresh tables
+            func finishLoading() {
+                self.updateCoreData(withEntries: jsonArray)
+                loadingAlert.hideAlert()
+            }
+            
             DispatchQueue.main.async {
-                // Remove local objects and delete coreData entries
-                self.fuelEntries.removeAll()
-                self.deleteCoreData {
-                    // Update coreData and refresh tables
-                    self.updateCoreData(withEntries: jsonArray)
-                    loadingAlert.hideAlert()
+                if withRefresh {
+                    // Remove local objects and delete coreData entries
+                    self.fuelEntries.removeAll()
+                    self.deleteCoreData {
+                        finishLoading()
+                    }
+                } else {
+                    finishLoading()
+                }
+                
+                // If last page was loaded, update UI
+                if doneLoading {
+                    self.listController.allEntriesLoaded = true
                 }
             }
         }) { (error) in
@@ -121,14 +138,10 @@ class ViewController: UITabBarController {
     }
     
     private func deleteCoreData(withCompletion completion: @escaping () -> Void) {
-        // create the delete request for the specified entity
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = FIOFuelEntry.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        // get reference to the persistent container
         let persistentContainer = FIOGlobal.shared.appDelegate.persistentContainer
         
-        // perform the delete
         do {
             try persistentContainer.viewContext.execute(deleteRequest)
             completion()
@@ -164,6 +177,10 @@ extension ViewController: FuelEntryListViewControllerDelegate {
     func fuelEntryListViewController(viewController: FuelEntryListViewController, didSelectFuelEntry fuelEntry: FIOFuelEntry) {
         selectedEntry = fuelEntry
         performSegue(withIdentifier: detailSegueIdentifier, sender: self)
+    }
+    
+    func fuelEntryListViewControllerRequestedMoreEntries(viewController: FuelEntryListViewController) {
+        fetchFuelEntries(withRefresh: false)
     }
     
 }

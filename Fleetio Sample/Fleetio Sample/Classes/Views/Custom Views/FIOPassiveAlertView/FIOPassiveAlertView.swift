@@ -36,7 +36,7 @@ class FIOPassiveAlertView: UIView {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
     // Private Vars
-    private let alertHeight: CGFloat = 100
+    private let alertHeight: CGFloat = 90
     
     
     // MARK: Public Functions

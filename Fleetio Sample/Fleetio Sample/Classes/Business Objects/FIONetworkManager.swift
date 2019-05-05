@@ -9,7 +9,7 @@
 import UIKit
 
 class FIONetworkManager: NSObject {
-    
+
     // Singleton
     public static let shared = FIONetworkManager()
     
@@ -26,9 +26,9 @@ class FIONetworkManager: NSObject {
     
     // MARK: Public Functions
     
-    public func getFuelEntries(withSuccess success: @escaping (Array<Dictionary<String, Any>>) -> Void, failure: @escaping (Error) -> Void) {
+    public func getFuelEntries(forPage pageNum: Int = 1, withSuccess success: @escaping (Array<Dictionary<String, Any>>, Bool) -> Void, failure: @escaping (Error) -> Void) {
         // Create request from URL
-        let urlString = "https://secure.fleetio.com/api/v1/fuel_entries"
+        let urlString = "https://secure.fleetio.com/api/v1/fuel_entries?page=\(pageNum)"
         guard let request = createAuthenticatedRequest(withUrlString: urlString) else {
             return
         }
@@ -45,7 +45,17 @@ class FIONetworkManager: NSObject {
             if let jsonData = data {
                 do {
                     let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as! Array<Dictionary<String, Any>>
-                    success(jsonArray)
+                    var isDoneLoading = false
+                    
+                    // If current page is the same as last page, tell app all entries are loaded
+                    if let response = (response as? HTTPURLResponse),
+                        let currentPage = response.allHeaderFields["X-Pagination-Current-Page"] as? String,
+                        let lastPage = response.allHeaderFields["X-Pagination-Total-Pages"] as? String,
+                        Int(currentPage)! >= (Int(lastPage)!) {
+                        isDoneLoading = true
+                    }
+                    
+                    success(jsonArray, isDoneLoading)
                 } catch(let error) {
                     failure(error)
                 }
