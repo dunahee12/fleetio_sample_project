@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UITabBarController {
     
-    // Private Vars
+    // Constants
     private let detailSegueIdentifier = "DetailSegue"
-    private var fuelEntries: [FIOFuelEntry]!
+    
+    // Private Vars
     private var listController: FuelEntryListViewController!
     private var mapController: FuelEntryMapViewController!
     private var selectedEntry: FIOFuelEntry?
+    private var fuelEntries = [FIOFuelEntry]()
 
     
     // MARK: Lifecycle Functions
@@ -24,30 +27,8 @@ class ViewController: UITabBarController {
         super.viewDidLoad()
         
         setupChildViewControllers() // Set up references to children
-        fuelEntries = [FIOFuelEntry]()
-        
-        // Use passive alert as a 'loading indicator'
-        let loadingAlert: FIOPassiveAlertView = UIView.fromNib()
-        loadingAlert.showsLoader = true
-        loadingAlert.presentAlert(withMessage: "Getting latest Fuel Entries", alertType: .positive, forView: view)
-        
-        FIONetworkManager.shared.getFuelEntries(withSuccess: { (jsonArray) in
-            for entry in jsonArray {
-                let fuelEntry = FIOFuelEntry(withDictionary: entry)
-                self.fuelEntries.append(fuelEntry)
-            }
-            
-            DispatchQueue.main.async {
-                self.updateFuelEntries()
-                loadingAlert.hideAlert()
-            }
-        }) { (error) in
-            let alert = UIAlertController(title: "Uh oh!", message: "An error occurred while trying to get fuel entries. Please try again!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            
-            print("[Fleet Sample - ViewController]: \(error)")
-        }
+        loadCoreDataEntries()
+        refreshFuelEntries()
     }
     
     
@@ -87,20 +68,91 @@ class ViewController: UITabBarController {
         }
     }
     
-    private func updateFuelEntries() {
-        if listController != nil {
-            listController.fuelEntries = self.fuelEntries
-        }
-        
-        if mapController != nil {
-            mapController.fuelEntries = self.fuelEntries
-        }
+    private func updateChildViewControllers() {
+        listController.fuelEntries = self.fuelEntries
+        mapController.fuelEntries = self.fuelEntries
     }
-    
+
     private func presentPassiveAlert(withMessage message: String, alertType: PassiveAlertType = .positive) {
         let passiveAlertView: FIOPassiveAlertView = UIView.fromNib()
         passiveAlertView.autoDismissEnabled = true
         passiveAlertView.presentAlert(withMessage: message, alertType: alertType, forView: view)
+    }
+    
+    private func refreshFuelEntries() {
+        // Use passive alert as a 'loading indicator'
+        let loadingAlert: FIOPassiveAlertView = UIView.fromNib()
+        loadingAlert.showsLoader = true
+        loadingAlert.presentAlert(withMessage: "Getting latest Fuel Entries", alertType: .positive, forView: view)
+        
+        // Start API request
+        FIONetworkManager.shared.getFuelEntries(withSuccess: { (jsonArray) in
+            DispatchQueue.main.async {
+                // Remove local objects and delete coreData entries
+                self.fuelEntries.removeAll()
+                self.deleteCoreData {
+                    // Update coreData and refresh tables
+                    self.updateCoreData(withEntries: jsonArray)
+                    loadingAlert.hideAlert()
+                }
+            }
+        }) { (error) in
+            let alert = UIAlertController(title: "Uh oh!", message: "An error occurred while trying to get fuel entries. Please try again!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+            print("[Fleet Sample - ViewController]: \(error)")
+        }
+    }
+    
+    private func updateCoreData(withEntries entries: [Dictionary<String, Any>]) {
+        for entry in entries {
+            let fuelEntry = FIOFuelEntry(context: FIOGlobal.shared.context)
+            fuelEntry.populate(withDictionary: entry)
+            self.fuelEntries.append(fuelEntry)
+        }
+        
+        do {
+            updateChildViewControllers()
+            try FIOGlobal.shared.context.save()
+        } catch(let error) {
+            print("[Fleet Sample - ViewController]: Failed to save to CoreData with error - \(error.localizedDescription)")
+        }
+    }
+    
+    private func deleteCoreData(withCompletion completion: @escaping () -> Void) {
+        // create the delete request for the specified entity
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = FIOFuelEntry.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        // get reference to the persistent container
+        let persistentContainer = FIOGlobal.shared.appDelegate.persistentContainer
+        
+        // perform the delete
+        do {
+            try persistentContainer.viewContext.execute(deleteRequest)
+            completion()
+        } catch(let error) {
+            print("[Fleet Sample - ViewController]: Failed to delete CoreData entries with error - \(error.localizedDescription)")
+        }
+        
+    }
+    
+    /**
+     Loads saved entries before refreshing. Useful for offline mode
+     */
+    private func loadCoreDataEntries() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: FIOFuelEntry.coreDataEntityId)
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try FIOGlobal.shared.context.fetch(request)
+            self.fuelEntries = (result as! [FIOFuelEntry])
+            updateChildViewControllers()
+        } catch {
+            print("[Fleet Sample - ViewController]: Failed to load CoreData with error - \(error.localizedDescription)")
+        }
     }
 }
 

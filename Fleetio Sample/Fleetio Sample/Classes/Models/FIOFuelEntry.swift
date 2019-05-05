@@ -7,30 +7,38 @@
 //
 
 import Foundation
+import CoreData
 
-struct FIOFuelEntry {
-    
-    var date: Date
-    var vehicleName: String
-    var costPerMile: Double
-    var usageInMiles: Double
-    var gallons: Double
-    var fuelTypeName: String
-    var pricePerGallon: Double
-    var vendor: String
-    var referenceNumber: String
-    var latitude: Double
-    var longitude: Double
+class FIOFuelEntry: NSManagedObject {
+//
+    // Public Vars
+    @NSManaged public var date: Date
+    @NSManaged public var vehicleName: String
+    @NSManaged public var costPerMile: Double
+    @NSManaged public var usageInMiles: Double
+    @NSManaged public var gallons: Double
+    @NSManaged public var fuelTypeName: String
+    @NSManaged public var pricePerGallon: Double
+    @NSManaged public var vendor: String
+    @NSManaged public var referenceNumber: String
+    @NSManaged public var latitude: Double
+    @NSManaged public var longitude: Double
     
     // I'm not 100% sure on this, but this is what I am using to calculate
     // the 'cost' field, as described in the project instructions
-    var cost: Double {
+    public var cost: Double {
         return costPerMile * usageInMiles
     }
     
-    init(withDictionary dictionary: Dictionary<String, Any>) {
-        if let dateString = dictionary["date"] as? String,
-            let dateValue = FIOGlobal.shared.stringToDateFormatter.date(from: dateString) {
+    // Constants
+    public static let coreDataEntityId = "FIOFuelEntry"
+
+
+    // MARK: Public Functions
+    
+   public func populate(withDictionary dictionary: Dictionary<String, Any>) {
+        // Parse date, or use current if nil
+        if let dateString = dictionary["date"] as? String, let dateValue = FIOGlobal.shared.stringToDateFormatter.date(from: dateString) {
             date = dateValue
         } else {
             date = Date()
@@ -55,3 +63,4 @@ struct FIOFuelEntry {
     }
     
 }
+

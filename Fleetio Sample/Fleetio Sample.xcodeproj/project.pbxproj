@@ -28,6 +28,7 @@
 		EFD3B4D7227CB75200F98FD6 /* FIOGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B4D6227CB75200F98FD6 /* FIOGlobal.swift */; };
 		EFD3B4D9227CF78700F98FD6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B4D8227CF78700F98FD6 /* UIViewExtension.swift */; };
 		EFD3B4DC227CF7B300F98FD6 /* FIOPassiveAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD3B4DB227CF7B300F98FD6 /* FIOPassiveAlertView.xib */; };
+		EFD3B4DF227CFE4400F98FD6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EFD3B4DD227CFE4400F98FD6 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		EFD3B4D6227CB75200F98FD6 /* FIOGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIOGlobal.swift; sourceTree = "<group>"; };
 		EFD3B4D8227CF78700F98FD6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		EFD3B4DB227CF7B300F98FD6 /* FIOPassiveAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FIOPassiveAlertView.xib; sourceTree = "<group>"; };
+		EFD3B4DE227CFE4400F98FD6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				EFD3B42A227A3B4C00F98FD6 /* Info.plist */,
 				EFD3B41E227A3B4A00F98FD6 /* AppDelegate.swift */,
+				EFD3B4DD227CFE4400F98FD6 /* Model.xcdatamodeld */,
 			);
 			path = Fleetio;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				EFD3B468227B621A00F98FD6 /* FIOPassiveAlertView.swift in Sources */,
 				EFD3B4D7227CB75200F98FD6 /* FIOGlobal.swift in Sources */,
 				EFD3B421227A3B4A00F98FD6 /* ViewController.swift in Sources */,
+				EFD3B4DF227CFE4400F98FD6 /* Model.xcdatamodeld in Sources */,
 				EFD3B460227B3DB500F98FD6 /* FuelEntryMapViewController.swift in Sources */,
 				EFD3B455227A4F0B00F98FD6 /* FIOFuelEntry.swift in Sources */,
 				EFD3B46C227B81AD00F98FD6 /* FuelEntryDetailViewController.swift in Sources */,
@@ -746,6 +750,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EFD3B4DD227CFE4400F98FD6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EFD3B4DE227CFE4400F98FD6 /* Model.xcdatamodel */,
+			);
+			currentVersion = EFD3B4DE227CFE4400F98FD6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EFD3B413227A3B4A00F98FD6 /* Project object */;
 }

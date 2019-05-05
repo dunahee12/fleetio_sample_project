@@ -18,12 +18,7 @@ class FuelEntryListViewController: UIViewController {
     public weak var delegate: FuelEntryListViewControllerDelegate?
     public var fuelEntries: [FIOFuelEntry]! {
         didSet {
-            if fuelEntries.isEmpty {
-                tableView.isHidden = true
-            } else {
-                tableView.isHidden = false
-                tableView.reloadData()
-            }
+            updateTable()
         }
     }
     
@@ -37,12 +32,26 @@ class FuelEntryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if fuelEntries == nil || fuelEntries.isEmpty {
-            tableView.isHidden = true
-        }
+        updateTable()
 
         // Register tableViewCell
         tableView.register(UINib(nibName: FIOFuelEntryCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: FIOFuelEntryCell.cellIdentifier)
+    }
+    
+    
+    // MARK: Private Functions
+    
+    func updateTable() {
+        guard  let tableView = tableView else {
+            return
+        }
+        
+        if fuelEntries == nil || fuelEntries.isEmpty {
+            tableView.isHidden = true
+        } else {
+            tableView.isHidden = false
+            tableView.reloadData()
+        }
     }
 
 }
