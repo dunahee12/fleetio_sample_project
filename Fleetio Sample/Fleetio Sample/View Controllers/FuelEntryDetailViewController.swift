@@ -67,14 +67,34 @@ extension FuelEntryDetailViewController: UITableViewDataSource, UITableViewDeleg
         let cell = tableView.dequeueReusableCell(withIdentifier: FIOFuelDetailCell.cellIdentifier, for: indexPath) as! FIOFuelDetailCell
         
         switch indexPath.row {
-        case 0: cell.bind(withTitle: "Date", value: fuelEntry.date)
-        case 1: cell.bind(withTitle: "Cost", value: fuelEntry.cost)
-        case 2: cell.bind(withTitle: "Cost per mile", value: fuelEntry.costPerMile)
-        case 3: cell.bind(withTitle: "Gallons", value: fuelEntry.gallons)
-        case 4: cell.bind(withTitle: "Fuel Type", value: fuelEntry.fuelTypeName)
-        case 5: cell.bind(withTitle: "Price per gallon", value: fuelEntry.pricePerGallon)
-        case 6: cell.bind(withTitle: "Vendor", value: fuelEntry.vendor)
-        case 7: cell.bind(withTitle: "Reference Number", value: fuelEntry.referenceNumber)
+        case 0:
+            let formattedDate = FIOGlobal.shared.dateToStringFormatter.string(from: fuelEntry.date)
+            cell.bind(withTitle: "Date", value: formattedDate)
+            
+        case 1:
+            let costString = String(format: "$%.02f", arguments: [fuelEntry.cost])
+            cell.bind(withTitle: "Cost", value: costString)
+            
+        case 2:
+            let costString = String(format: "$%.02f", arguments: [fuelEntry.costPerMile])
+            cell.bind(withTitle: "Cost per mile", value: costString)
+            
+        case 3:
+            cell.bind(withTitle: "Gallons", value: fuelEntry.gallons)
+            
+        case 4:
+            cell.bind(withTitle: "Fuel Type", value: fuelEntry.fuelTypeName)
+            
+        case 5:
+            let priceString = String(format: "$%.02f", arguments: [fuelEntry.pricePerGallon])
+            cell.bind(withTitle: "Price per gallon", value: priceString)
+            
+        case 6:
+            cell.bind(withTitle: "Vendor", value: fuelEntry.vendor)
+            
+        case 7:
+            cell.bind(withTitle: "Reference Number", value: fuelEntry.referenceNumber)
+            
         default: break
         }
 

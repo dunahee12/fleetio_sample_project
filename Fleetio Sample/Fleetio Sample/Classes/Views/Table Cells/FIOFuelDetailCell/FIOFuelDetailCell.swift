@@ -16,6 +16,13 @@ class FIOFuelDetailCell: UITableViewCell {
     // IBOutlets
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblValue: UILabel!
+    
+    
+    // MARK: Lifecycle Functions
+    
+    override func awakeFromNib() {
+        selectionStyle = .none
+    }
 
     
     // MARK: Public Functions
