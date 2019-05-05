@@ -177,5 +177,10 @@ extension ViewController: FuelEntryMapViewControllerDelegate {
         presentPassiveAlert(withMessage: "Unable to map \(count) fuel entries", alertType: .negative)
     }
     
+    func fuelEntryMapViewController(viewController: FuelEntryMapViewController, didSelectFuelEntry fuelEntry: FIOFuelEntry) {
+        selectedEntry = fuelEntry
+        performSegue(withIdentifier: detailSegueIdentifier, sender: self)
+    }
+    
 }
 

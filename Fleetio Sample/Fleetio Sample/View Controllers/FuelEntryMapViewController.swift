@@ -9,8 +9,23 @@
 import UIKit
 import MapKit
 
+// Subclass of map annotation that allows us to track the related fuel entry
+class FIOFuelEntryAnnotation: MKPointAnnotation {
+    
+    var fuelEntry: FIOFuelEntry? {
+        didSet {
+            title = fuelEntry?.vehicleName ?? "Unavailable"
+            subtitle = fuelEntry?.referenceNumber ?? "Unavailable"
+            coordinate = CLLocationCoordinate2D(latitude: fuelEntry?.latitude ?? 0.0, longitude: fuelEntry?.longitude ?? 0.0)
+        }
+    }
+    
+}
+
+
 protocol FuelEntryMapViewControllerDelegate: class {
     func fuelEntryMapViewController(viewController: FuelEntryMapViewController, receivedMappingErrorWithCount count: Int)
+    func fuelEntryMapViewController(viewController: FuelEntryMapViewController, didSelectFuelEntry fuelEntry: FIOFuelEntry)
 }
 
 class FuelEntryMapViewController: UIViewController {
@@ -49,6 +64,7 @@ class FuelEntryMapViewController: UIViewController {
         }
         
         // Clear previous annotations
+        mapView.delegate = self
         mapView.removeAnnotations(annotations)
         annotations.removeAll()
         
@@ -56,17 +72,18 @@ class FuelEntryMapViewController: UIViewController {
         
         // Populate annotations
         for entry in fuelEntries {
+            // If the lat and long are both 0, we can assume
+            // that the entry is unmapple and continue to next entry
             if entry.latitude == 0 && entry.longitude == 0 {
                 errorCount += 1
+                continue
             }
             
-            let annotation = MKPointAnnotation()
-            annotation.title = entry.vehicleName
-            annotation.subtitle = entry.referenceNumber
-            annotation.coordinate = CLLocationCoordinate2D(latitude: entry.latitude, longitude: entry.longitude)
-            mapView.addAnnotation(annotation)
+            let annotation = FIOFuelEntryAnnotation()
+            annotation.fuelEntry = entry
             
-            annotations.append(annotation)
+            mapView.addAnnotation(annotation)
+            annotations.append(annotation) // Append to local annoation array
         }
         
         showMappingError(withCount: errorCount)
@@ -81,4 +98,17 @@ class FuelEntryMapViewController: UIViewController {
         delegate?.fuelEntryMapViewController(viewController: self, receivedMappingErrorWithCount: count)
     }
 
+}
+
+
+// MARK: MKMapView Delegate
+
+extension FuelEntryMapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let fuelAnnotation = view.annotation as? FIOFuelEntryAnnotation, let fuelEntry = fuelAnnotation.fuelEntry {
+            delegate?.fuelEntryMapViewController(viewController: self, didSelectFuelEntry: fuelEntry)
+        }
+    }
+    
 }
