@@ -11,6 +11,7 @@ import UIKit
 protocol FuelEntryListViewControllerDelegate: class {
     func fuelEntryListViewController(viewController: FuelEntryListViewController, didSelectFuelEntry fuelEntry: FIOFuelEntry)
     func fuelEntryListViewControllerRequestedMoreEntries(viewController: FuelEntryListViewController)
+    func fuelEntryListViewControllerRequestedRefresh(viewController: FuelEntryListViewController)
 }
 
 class FuelEntryListViewController: UIViewController {
@@ -64,6 +65,12 @@ class FuelEntryListViewController: UIViewController {
 
         // Register tableViewCell
         tableView.register(UINib(nibName: FIOFuelEntryCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: FIOFuelEntryCell.cellIdentifier)
+        
+        // Added refresh control to tableView
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.fleetioGreen()
+        refreshControl.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     
@@ -74,6 +81,11 @@ class FuelEntryListViewController: UIViewController {
         if !allEntriesLoaded {
             delegate?.fuelEntryListViewControllerRequestedMoreEntries(viewController: self)
         }
+    }
+    
+    @objc
+    func pulledToRefresh() {
+        delegate?.fuelEntryListViewControllerRequestedRefresh(viewController: self)
     }
     
     

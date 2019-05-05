@@ -82,9 +82,10 @@ class ViewController: UITabBarController {
     
     private func fetchFuelEntries(withRefresh: Bool) {
         // Use passive alert as a 'loading indicator'
+        let loadingMessage = withRefresh ? "Getting latest Fuel Entries" : "Loading more Fuel Entries"
         let loadingAlert: FIOPassiveAlertView = UIView.fromNib()
         loadingAlert.showsLoader = true
-        loadingAlert.presentAlert(withMessage: "Getting latest Fuel Entries", alertType: .positive, forView: view)
+        loadingAlert.presentAlert(withMessage: loadingMessage, alertType: .positive, forView: view)
         
         // Sets page number for pagination
         fuelEntryPaginationCounter = withRefresh ? 1 : (fuelEntryPaginationCounter + 1)
@@ -98,6 +99,11 @@ class ViewController: UITabBarController {
             }
             
             DispatchQueue.main.async {
+                // Hide refresh control, if it exists
+                if let refreshControl = self.listController.tableView.refreshControl {
+                    refreshControl.endRefreshing()
+                }
+                
                 if withRefresh {
                     // Remove local objects and delete coreData entries
                     self.fuelEntries.removeAll()
@@ -181,6 +187,10 @@ extension ViewController: FuelEntryListViewControllerDelegate {
     
     func fuelEntryListViewControllerRequestedMoreEntries(viewController: FuelEntryListViewController) {
         fetchFuelEntries(withRefresh: false)
+    }
+    
+    func fuelEntryListViewControllerRequestedRefresh(viewController: FuelEntryListViewController) {
+        fetchFuelEntries(withRefresh: true)
     }
     
 }
