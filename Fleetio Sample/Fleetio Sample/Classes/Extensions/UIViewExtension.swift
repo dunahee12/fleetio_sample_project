@@ -11,6 +11,7 @@ import UIKit
 
 extension UIView {
     
+    // Quick way to init views from nib
     class func fromNib<T: UIView>() -> T {
         return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }

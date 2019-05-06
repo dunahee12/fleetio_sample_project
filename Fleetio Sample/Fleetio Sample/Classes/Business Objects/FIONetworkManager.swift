@@ -13,16 +13,6 @@ class FIONetworkManager: NSObject {
     // Singleton
     public static let shared = FIONetworkManager()
     
-    // Private Vars
-    private var session: URLSession!
-    
-    
-    // MARK: Initializers
-    
-    override init() {
-        session = URLSession.shared
-    }
-    
     
     // MARK: Public Functions
     
@@ -34,7 +24,7 @@ class FIONetworkManager: NSObject {
         }
         
         // Perform request
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             // If error, handle and return
             if let error = error {
                 failure(error)
