@@ -24,7 +24,7 @@ class FIOFuelEntryCell: UITableViewCell {
     public func bind(withFuelEntry fuelEntry: FIOFuelEntry) {
         lblVehicleName.text = fuelEntry.vehicleName
         lblDate.text = FIOGlobal.shared.dateToStringFormatter.string(from: fuelEntry.date)
-        lblCost.text = "$\(fuelEntry.cost)"
+        lblCost.text = String(format: "$%.02f", arguments: [fuelEntry.pricePerGallon])
     }
     
 }

@@ -15,7 +15,7 @@ class FIOFuelEntryAnnotation: MKPointAnnotation {
     var fuelEntry: FIOFuelEntry? {
         didSet {
             title = fuelEntry?.vehicleName ?? "Unavailable"
-            subtitle = fuelEntry?.referenceNumber ?? "Unavailable"
+            subtitle = FIOGlobal.shared.dateToStringFormatter.string(from: fuelEntry?.date ?? Date())
             coordinate = CLLocationCoordinate2D(latitude: fuelEntry?.latitude ?? 0.0, longitude: fuelEntry?.longitude ?? 0.0)
         }
     }
